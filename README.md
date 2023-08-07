@@ -1,3 +1,4 @@
+<p align="center"><img width="196" height="196" src="https://i.imgur.com/zIXGZCg.png"></p>
 <h1 align="center">PicWiz Legacy</h1>
 
 A Manifest V2 Browser Extension that makes it possible to perform various operations on images via [ImgOps.com](https://ImgOps.com) by either selecting an image through the context menu or clicking the extension icon to view all images in the current tab and choosing an image.
