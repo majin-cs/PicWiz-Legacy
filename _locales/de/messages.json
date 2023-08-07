@@ -1,0 +1,45 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "Wählen Sie entweder ein Bild über das Kontextmenü aus oder klicken Sie auf das Erweiterungssymbol für eine Übersicht aller Bilder aus, um verschiedene Operationen mit diesen über ImgOps.com durchzuführen (diese Erweiterung steht nicht in Verbindung mit der genannten Website). Diese Erweiterung wurde von majin-cs erstellt, um die Rückwärtssuche von Bildern mit nur einem Klick zu ermöglichen."
+  },
+
+  "contextMenuTitle": {
+    "message": "Mit ImgOps öffnen 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "foundImages": {
+    "message": "Gefundene Bild-Urls"
+  },
+
+  "noImages": {
+    "message": "Keine Bild-Urls gefunden"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps unterstützt das Format des ausgewählten Bildes nicht"
+  },
+
+  "errorUnexpected" : {
+    "message": "Ein nicht bekannter Fehler ist aufgetreten"
+  },
+
+  "errorBlob" : {
+    "message": "Es konnte kein BLOB aus dem Base64-Bild erstellt werden"
+  },
+
+  "errorFiles" : {
+    "message": "Bild(er) konnte(n) nicht in Datei(en) umgewandelt werden"
+  },
+
+  "errorImageLoad" : {
+    "message": "Bilder konnten nicht geladen werden"
+  }
+}
