@@ -23,13 +23,13 @@ This extension is not affiliated with ImgOps.com - it merely simplifies the way 
 ## Features
 
 - Easily access ImgOps.com by opening the context menu on an image
-- Uploads Base64 / Data-URL Images automatically to ImgOps.com upon choosing 
+- Uploads Base64 / Data-URL Images automatically to ImgOps.com upon choosing
 - Provides an overview of all (URL only) images in the current tab via the extension popup
 
 ## Screenshots
 
 | Right click an image | Perform various image operations such as *Reverse Image Search* on ImgOps.com |
-| -------- | -------- | 
+| -------- | -------- |
 | ![Context Menu Item](https://i.imgur.com/CECo9n7.png) | ![ImgOps Website Options](https://i.imgur.com/LBWH7qV.png) |
 
 
