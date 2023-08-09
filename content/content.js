@@ -81,11 +81,12 @@ browserAPI.runtime.onMessage.addListener(({ action }, sender, sendResponse) => {
             try {
                 const imgElements = Array.from(document.querySelectorAll('img'));
                 const imgUrls = imgElements
-                    .filter(img => img.src && isValidImgUrl(img.src))
-                    .map(img => ({
-                        url: img.src,
-                        imgOpsLink: `${IMG_OPS_URL}${img.src}`,
-                    }));
+                    .filter(img => img.src)
+                    .map(img => img.src);
+                /*.map(img => ({
+                    url: img.src,
+                    imgOpsLink: `${IMG_OPS_URL}${img.src}`,
+                }));*/
                 sendResponse({ imgUrls });
             } catch (error) {
                 sendErrorMessage(sendResponse, IMAGE_LOAD_ERR);

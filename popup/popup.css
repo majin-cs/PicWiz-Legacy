@@ -8,6 +8,7 @@ body {
   margin: 1rem;
   background: #121212;
   color: #cccccc;
+
 }
 
 #container-title {
@@ -30,22 +31,16 @@ hr {
 }
 
 .img-container {
+  max-width: 625px;
   display: flex;
   flex-wrap: wrap;
   column-gap: 0.8rem;
   row-gap: 1.6rem;
-}
-
-@media screen and (min-width: 600px) {
-  .img-container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: 0.8rem;
-    row-gap: 1.6rem;
-  }
+  overflow-y: auto;
 }
 
 .image-card {
+  width: 180px;
   height: fit-content;
   border-radius: 1.5rem;
   padding: 0.6rem;
@@ -91,4 +86,5 @@ hr {
   font-weight: 600;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
 }

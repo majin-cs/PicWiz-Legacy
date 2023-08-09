@@ -11,6 +11,7 @@ const IMG_NOT_SUPPORTED = browserAPI.i18n.getMessage("errorimgNotSupported");
 const actions = {
   uploadBase64: 1,
   getAllImgUrls: 2,
+  openImgOps: 3,
 }
 
 // Check if URL ends with "valid" image extensions
@@ -25,13 +26,13 @@ function isBase64Image(url) {
   return BASE_64_REG.test(url);
 }
 
-function openImgTab(imgUrl) {
+function createImgTab(imgUrl) {
   browserAPI.tabs.create({
     url: `${IMG_OPS_URL}${imgUrl}`
   });
 }
 
-function openImgUploadTab(imgUrl) {
+function createImgUploadTab(imgUrl) {
   browserAPI.tabs.create({
     url: IMG_OPS_UPLOAD_URL,
   }, (createdTab) => {
@@ -55,6 +56,19 @@ async function sendUploadAction(tab, imgUrl) {
   browserAPI.tabs.onUpdated.addListener(uploadTabListener);
 }
 
+function openImgOps(imgUrl) {
+  if (isValidImgUrl(imgUrl)) {
+    createImgTab(imgUrl);
+  } else if (isBase64Image(imgUrl)) {
+    createImgUploadTab(imgUrl);
+  } else {
+    console.error(IMG_NOT_SUPPORTED);
+    // Try to open anyway, as there are cases where the image has no extension 
+    // + the user will see the error from the site itself
+    createImgTab(imgUrl);
+  }
+}
+
 /* Create Context Menu Item */
 browserAPI.contextMenus.create({
   id: CONTEXT_MENU_ITEM_ID,
@@ -66,17 +80,13 @@ browserAPI.contextMenus.create({
 browserAPI.contextMenus.onClicked.addListener(
   async (info, tab) => {
     if (info.menuItemId === CONTEXT_MENU_ITEM_ID) {
-      const imgUrl = info.srcUrl;
-      if (isValidImgUrl(imgUrl)) {
-        openImgTab(imgUrl);
-      } else if (isBase64Image(imgUrl)) {
-        openImgUploadTab(imgUrl);
-      } else {
-        console.error(IMG_NOT_SUPPORTED);
-        // Try to open anyway, as there are cases where the image has no extension 
-        // + the user will see the error from the site itself
-        openImgTab(imgUrl);
-      }
+      openImgOps(info.srcUrl);
     }
   }
-)
+);
+
+browserAPI.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === actions.openImgOps) {
+    openImgOps(message.imgUrl);
+  }
+});

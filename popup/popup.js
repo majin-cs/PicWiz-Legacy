@@ -7,13 +7,14 @@ const NO_IMAGES = browserAPI.i18n.getMessage("noImages");
 const actions = {
   uploadBase64: 1,
   getAllImgUrls: 2,
+  openImgOps: 3,
 }
 
 document.title = browserAPI.i18n.getMessage("errorImageLoad");
 
-function renderImages(imgs) {
+function renderImages(imgUrls) {
   const imgContainerTitle = document.getElementById('container-title');
-  if (imgs.length === 0) {
+  if (imgUrls.length === 0) {
     imgContainerTitle.textContent = NO_IMAGES;
     // Stop rendering if no images are found
     return;
@@ -26,26 +27,29 @@ function renderImages(imgs) {
 
   const fragment = document.createDocumentFragment();
 
-  imgs.forEach(img => {
+  imgUrls.forEach(imgUrl => {
     /* Outer img element (card) */
     const imgDiv = document.createElement('div');
     imgDiv.className = 'image-card';
 
     /* <img/> element */
     const imgElement = document.createElement('img');
-    imgElement.src = img.url;
+    imgElement.src = imgUrl;
     imgElement.className = 'image-preview';
     imgElement.loading = 'lazy';
     imgElement.addEventListener('click', () => {
-      browserAPI.tabs.create({ url: img.url });
+      browserAPI.tabs.create({ url: imgUrl });
     });
 
     /* <a/> ImgOps Link */
     const imgLink = document.createElement('a');
-    imgLink.href = img.imgOpsLink;
-    imgLink.target = '_blank';
+    //imgLink.href = img.imgOpsLink;
+    //imgLink.target = '_blank';
     imgLink.textContent = GO_TO_IMG_OPS;
     imgLink.className = 'imgops-link link-card';
+    imgLink.onclick = () => {
+      browserAPI.runtime.sendMessage({ action: actions.openImgOps, imgUrl: imgUrl });
+    };
 
     /* Append to html */
     imgDiv.appendChild(imgElement);
@@ -57,6 +61,7 @@ function renderImages(imgs) {
   imgContainer.appendChild(fragment);
   document.body.appendChild(imgContainer);
 }
+
 
 /* Queries */
 browserAPI.tabs.query({ active: true, currentWindow: true }, async tabs => {

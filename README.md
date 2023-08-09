@@ -24,7 +24,7 @@ This extension is not affiliated with ImgOps.com - it merely simplifies the way 
 
 - Easily access ImgOps.com by opening the context menu on an image
 - Uploads Base64 / Data-URL Images automatically to ImgOps.com upon choosing
-- Provides an overview of all (URL only) images in the current tab via the extension popup
+- Provides an overview + ImgOps link for all images in the current tab via the extension popup
 
 ## Screenshots
 
