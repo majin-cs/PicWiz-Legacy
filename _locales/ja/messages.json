@@ -1,0 +1,113 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "スクリーンショットをキャプチャし、画像を右クリックし、タブ内のすべてを概観して、(一括で) ダウンロードするか、ImgOps.com で使用します。"
+  },
+
+  "contextMenuTitle": {
+    "message": "ImgOpsで開く 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "capture": {
+    "message": "スクリーンショット"
+  },
+
+  "changeShortcuts": {
+    "message": "ショートカット"
+  },
+
+  "options": {
+    "message": "オプション"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "ポップアップが開かれる際にタブ内のすべての画像を読み込む"
+  },
+
+  "loadImagesDisabled": {
+    "message": "画像のスクレイピングが無効になっています"
+  },
+
+  "downloadImgs": {
+    "message": "ダウンロード"
+  },
+
+  "selectAll": {
+    "message": "すべて選択"
+  },
+
+  "reload": {
+    "message": "ポップアップを再読み込み"
+  },
+
+  "copy": {
+    "message": "コピー"
+  },
+
+  "copied": {
+    "message": "画像がクリップボードにコピーされました！ (貼り付けるにはCTRL + Vを押してください 📋)"
+  },
+
+  "save": {
+    "message": "保存"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "終了"
+  },
+
+  "kbdExit": {
+    "message": "終了するには、以下のキーも選択できます:"
+  },
+
+  "screenshotInfo": {
+    "message": "選択を開始するにはページ上の任意の場所をドラッグするか、終了ボタンを押します"
+  },
+
+  "foundImages": {
+    "message": "見つかった画像"
+  },
+
+  "noImages": {
+    "message": "画像URLが見つかりません"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOpsは選択した画像の形式をサポートしていません"
+  },
+
+  "errorUnexpected": {
+    "message": "予期しないエラーが発生しました"
+  },
+
+  "errorBlob": {
+    "message": "Base64画像からBLOBを作成できませんでした"
+  },
+
+  "errorFiles": {
+    "message": "画像をファイルに変換できませんでした"
+  },
+
+  "errorImageLoad": {
+    "message": "画像を読み込めませんでした"
+  },
+
+  "numberTooSmall": {
+    "message": "渡された数値が小さすぎます"
+  },
+
+  "notSupported": {
+    "message": "ページはスクリプトをサポートしていないか、完全に読み込まれていません"
+  }
+}

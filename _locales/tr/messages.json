@@ -1,0 +1,114 @@
+{
+    "extensionName": {
+      "message": "PicWiz"
+    },
+  
+    "extensionDescription": {
+      "message": "Ekranı yakalayın, resimlere sağ tıklayın veya sekmedeki her şeyi görün, sonra indirin veya ImgOps.com'da kullanın."
+    },
+  
+    "contextMenuTitle": {
+      "message": "ImgOps ile Aç 🔎"
+    },
+  
+    "goToImgOps": {
+      "message": "ImgOps ›"
+    },
+  
+    "capture": {
+      "message": "Ekran Görüntüsü Al"
+    },
+  
+    "changeShortcuts": {
+      "message": "Kısayolları Değiştir"
+    },
+  
+    "options": {
+      "message": "Ayarlar"
+    },
+  
+    "loadImagesOnOpen": {
+      "message": "Açılır pencere açıldığında sekmenin tüm resimlerinin bir özetini yükle"
+    },
+  
+    "loadImagesDisabled": {
+      "message": "Resim toplama devre dışı bırakıldı"
+    },
+  
+    "downloadImgs": {
+      "message": "İndir"
+    },
+  
+    "selectAll": {
+      "message": "Tümünü Seç"
+    },
+  
+    "reload": {
+      "message": "Açılır pencereyi yeniden yükle"
+    },
+  
+    "copy": {
+      "message": "Kopyala"
+    },
+  
+    "copied": {
+      "message": "Resim panoya kopyalandı! (Yapıştırmak için CTRL + V tuşlarına basın 📋)"
+    },
+  
+    "save": {
+      "message": "Kaydet"
+    },
+  
+    "cancel": {
+      "message": "✕"
+    },
+  
+    "exit": {
+      "message": "Çıkış"
+    },
+  
+    "kbdExit": {
+      "message": "Çıkış yapmak için aşağıdaki tuşları da kullanabilirsiniz:"
+    },
+  
+    "screenshotInfo": {
+      "message": "Seçimi başlatmak için sayfanın herhangi bir yerine tıklayın VEYA Çıkış düğmesine basın"
+    },
+  
+    "foundImages": {
+      "message": "Bulunan Resimler"
+    },
+  
+    "noImages": {
+      "message": "Resim URL'leri bulunamadı"
+    },
+  
+    "errorimgNotSupported": {
+      "message": "Seçilen resmin formatı ImgOps tarafından desteklenmiyor"
+    },
+  
+    "errorUnexpected": {
+      "message": "Beklenmeyen bir hata oluştu"
+    },
+  
+    "errorBlob": {
+      "message": "Base64 resminden BLOB oluşturulamadı"
+    },
+  
+    "errorFiles": {
+      "message": "Resim(ler) dosyalara dönüştürülemedi"
+    },
+  
+    "errorImageLoad": {
+      "message": "Resimler yüklenemedi"
+    },
+  
+    "numberTooSmall": {
+      "message": "Verilen sayı çok küçük"
+    },
+  
+    "notSupported": {
+      "message": "Sayfa betikleri desteklemiyor veya tamamen yüklenmemiş"
+    }
+  }
+  

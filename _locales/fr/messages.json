@@ -1,0 +1,113 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "Prenez des captures d'écran, faites un clic droit sur les images ou visualisez tout l'onglet pour les télécharger ou les utiliser sur ImgOps.com."
+  },
+
+  "contextMenuTitle": {
+    "message": "Ouvrir avec ImgOps 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "capture": {
+    "message": "Capture d'écran"
+  },
+
+  "changeShortcuts": {
+    "message": "Raccourcis"
+  },
+
+  "options": {
+    "message": "Options"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Charger un aperçu de toutes les images de l'onglet lorsque la fenêtre contextuelle est ouverte"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Scraping des images désactivé"
+  },
+
+  "downloadImgs": {
+    "message": "Télécharger"
+  },
+
+  "selectAll": {
+    "message": "Tout sélectionner"
+  },
+
+  "reload": {
+    "message": "Recharger la fenêtre contextuelle"
+  },
+
+  "copy": {
+    "message": "Copier"
+  },
+
+  "copied": {
+    "message": "L'image a été copiée dans le presse-papiers ! (Appuyez sur CTRL + V pour coller 📋)"
+  },
+
+  "save": {
+    "message": "Télécharger"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Quitter"
+  },
+
+  "kbdExit": {
+    "message": "Vous pouvez également utiliser les touches suivantes pour quitter :"
+  },
+
+  "screenshotInfo": {
+    "message": "Faites glisser n'importe où sur la page pour commencer la sélection OU appuyez sur le bouton de sortie"
+  },
+
+  "foundImages": {
+    "message": "Images trouvées"
+  },
+
+  "noImages": {
+    "message": "Aucune URL d'image trouvée"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps ne prend pas en charge le format de l'image sélectionnée"
+  },
+
+  "errorUnexpected": {
+    "message": "Une erreur inconnue s'est produite"
+  },
+
+  "errorBlob": {
+    "message": "Impossible de créer un BLOB à partir de l'image Base64"
+  },
+
+  "errorFiles": {
+    "message": "Impossible de convertir l'image en fichier(s)"
+  },
+
+  "errorImageLoad": {
+    "message": "Impossible de charger les images"
+  },
+
+  "numberTooSmall": {
+    "message": "Le nombre fourni est trop petit"
+  },
+
+  "notSupported": {
+    "message": "La page ne prend pas en charge l'exécution de scripts ou n'a pas été entièrement chargée"
+  }
+}

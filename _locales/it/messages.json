@@ -1,0 +1,113 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "Cattura screenshot, clic destro su immagini, o ottieni panoramica su tutto nella scheda, per scaricare (in blocco) o usarle su ImgOps.com."
+  },
+
+  "contextMenuTitle": {
+    "message": "Apri con ImgOps 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "capture": {
+    "message": "Cattura schermo"
+  },
+
+  "changeShortcuts": {
+    "message": "Scorciatoie"
+  },
+
+  "options": {
+    "message": "Opzioni"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Carica un elenco di tutte le immagini nella scheda quando si apre il popup"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Disabilitato lo scraping delle immagini"
+  },
+
+  "downloadImgs": {
+    "message": "Scarica"
+  },
+
+  "selectAll": {
+    "message": "Seleziona tutto"
+  },
+
+  "reload": {
+    "message": "Ricarica popup"
+  },
+
+  "copy": {
+    "message": "Copia"
+  },
+
+  "copied": {
+    "message": "L'immagine è stata copiata negli appunti! (Premi CTRL + V per incollare 📋)"
+  },
+
+  "save": {
+    "message": "Salva"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Esci"
+  },
+
+  "kbdExit": {
+    "message": "Puoi anche usare i seguenti tasti per uscire:"
+  },
+
+  "screenshotInfo": {
+    "message": "Trascina su qualsiasi punto della pagina per iniziare la selezione O premi il pulsante Esci"
+  },
+
+  "foundImages": {
+    "message": "Immagini trovate"
+  },
+
+  "noImages": {
+    "message": "Nessuna URL dell'immagine trovata"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps non supporta il formato dell'immagine selezionata"
+  },
+
+  "errorUnexpected": {
+    "message": "Si è verificato un errore sconosciuto"
+  },
+
+  "errorBlob": {
+    "message": "Impossibile creare un oggetto BLOB dall'immagine Base64"
+  },
+
+  "errorFiles": {
+    "message": "Impossibile convertire l'immagine (o le immagini) in file"
+  },
+
+  "errorImageLoad": {
+    "message": "Impossibile caricare le immagini"
+  },
+
+  "numberTooSmall": {
+    "message": "Il numero inserito è troppo piccolo"
+  },
+
+  "notSupported": {
+    "message": "La pagina non supporta gli script o non è stata caricata completamente"
+  }
+}

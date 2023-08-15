@@ -1,25 +1,21 @@
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
-// Error messages
-const IMAGE_LOAD_ERR = browserAPI.i18n.getMessage("errorImageLoad");
-const IMG_NOT_SUPPORTED = browserAPI.i18n.getMessage("errorimgNotSupported");
-const UNEXPECTED_ERROR = browserAPI.i18n.getMessage("errorUnexpected");
-const COULD_NOT_CREATE_BLOB = browserAPI.i18n.getMessage("errorBlob");
-const FILE_ERR = browserAPI.i18n.getMessage("errorFiles");
+let utils;
+let constants;
+let capture;
+let captureCSSInjected = false;
 
-// Other constants
-const IMG_OPS_URL = "https://imgops.com/";
-const FILE_UPLOAD_ID = '#photo';
-const actions = {
-    uploadBase64: 1,
-    getAllImgUrls: 2,
+/******************************************************************************/
+
+async function importScripts() {
+    constants = await import(browserAPI.runtime.getURL("shared/constants.js"));
+    utils = await import(browserAPI.runtime.getURL("shared/utils.js"));
+    capture = await import(browserAPI.runtime.getURL("content/capture.js"));
 }
 
-// Check if URL ends with "valid" image extensions
-// Does not account for images with no OR manipulated file extensions!
-function isValidImgUrl(url) {
-    const IMG_URL_REG = /^(https?:\/\/).+\.(jpg|jpeg|png|gif|bmp|svg|webp|ico|avif|apng|tif|tiff|jxl|heic|heif|ppm|pgm|pbm|pnm|raw|cr2|nef|orf|sr2)$/i;
-    return IMG_URL_REG.test(url);
+function scriptingNotSupported() {
+    /* browserAPI not usable in this state (for content scripts) */
+    console.log(`PicWiz \n------\nPopup not supported by: \n${window.location.href}`);
 }
 
 async function dataURLToBlob(dataURL) {
@@ -27,73 +23,100 @@ async function dataURLToBlob(dataURL) {
         const res = await fetch(dataURL);
         const blob = await res.blob();
         return blob;
-    } catch {
-        console.error(COULD_NOT_CREATE_BLOB);
+    } catch (err) {
+        console.error(err)
         return false;
     }
 }
 
-function imgExtFromDataUrl(dataURL) {
-    const BASE_64_REG = /^data:image\/([a-z]+);base64,/i;
-    const match = dataURL.match(BASE_64_REG);
-    if (match) {
-        return match[1];
-    }
-    return 'png'; // Default to 'png' if extension cannot be determined
-}
-
-async function injectBase64Img(inputElement, base64Img) {
-    const blob = await dataURLToBlob(base64Img);
+async function injectBase64Img(inputElement, imgUrl) {
+    const blob = await dataURLToBlob(imgUrl);
     if (blob) {
-        const imgExt = imgExtFromDataUrl(base64Img);
-        const imgMime = `image/${imgExt}`;
+        const imgExt = utils.imgExtFromDataUrl(imgUrl);
+        const imgMimeType = `image/${imgExt}`;
         try {
-            const file = new File([blob], `image.${imgExt}`, { type: imgMime });
+            const filename = imgUrl.split('/').pop(); /* Should already include extension */
+            const file = new File([blob], `${filename}`, { type: imgMimeType });
             const dataTransfer = new DataTransfer();
             dataTransfer.items.add(file);
             inputElement.files = dataTransfer.files;
             inputElement.dispatchEvent(new Event('change', { bubbles: true }));
         } catch {
-            console.error(FILE_ERR);
+            console.error(constants.ERRORS.FILES);
         }
     }
 }
 
-function sendErrorMessage(sendResponse, errorMessage) {
-    console.error(errorMessage);
-    sendResponse({ error: true, message: errorMessage });
+/* Grab all <img> el in the tab and map their src */
+function scrapeImages() {
+    const imgElements = Array.from(document.querySelectorAll('img'));
+    const imgUrls = imgElements
+        .filter(img => img.src)
+        .map(img => img.src);
+    return [...new Set(imgUrls)]; /* Eliminate duplicate imgUrls */
 }
+
+/******************************************************************************/
+
+/* ACTIONS */
+
+function uploadBase64Action(sendResponse, img) {
+    const inputElement = document.querySelector(constants.FILE_UPLOAD_ID);
+    if (img && inputElement && inputElement.type === 'file') {
+        injectBase64Img(inputElement, img);
+    } else {
+        sendResponse({ error: true, message: constants.ERRORS.UNEXPECTED });
+    }
+}
+
+function getAllImagesAction(sendResponse) {
+    try {
+        /* Check if loading all images is enabled in options */
+        browserAPI.storage.sync.get([constants.OPTIONS.LOAD_IMAGES], (res) => {
+            if (res.loadImagesOnOpen === true) {
+                const imgUrls = scrapeImages();
+                sendResponse({ imgUrls });
+            } else {
+                sendResponse({ error: false });
+            }
+        });
+    } catch (error) {
+        sendResponse({ error: true, message: constants.ERRORS.IMAGE_LOAD });
+    }
+}
+
+function initScrenshotAction() {
+    /* Only inject css once per tab & only when screenshot action is sent */
+    if (!captureCSSInjected) {
+        browserAPI.runtime.sendMessage({ action: constants.ACTIONS.INJECT_CSS, path: "content/capture.css" }); /* Path relative from service_worker.js */
+        captureCSSInjected = true;
+    }
+    capture.initCapture();
+}
+
+/******************************************************************************/
 
 /* Register Listeners */
-browserAPI.runtime.onMessage.addListener(async ({ action, img }, sender, sendResponse) => {
-    if (action === actions.uploadBase64 && img) {
-        const inputElement = document.querySelector(FILE_UPLOAD_ID);
-        if (inputElement && inputElement.type === 'file') {
-            injectBase64Img(inputElement, img);
-        } else {
-            sendErrorMessage(sendResponse, UNEXPECTED_ERROR);
-        }
-    }
-});
-browserAPI.runtime.onMessage.addListener(({ action }, sender, sendResponse) => {
-    if (action === actions.getAllImgUrls) {
-        const sendImgUrls = () => {
-            try {
-                const imgElements = Array.from(document.querySelectorAll('img'));
-                const imgUrls = imgElements
-                    .filter(img => img.src)
-                    .map(img => img.src);
-                /*.map(img => ({
-                    url: img.src,
-                    imgOpsLink: `${IMG_OPS_URL}${img.src}`,
-                }));*/
-                sendResponse({ imgUrls });
-            } catch (error) {
-                sendErrorMessage(sendResponse, IMAGE_LOAD_ERR);
+
+if (!browserAPI.runtime) {
+    scriptingNotSupported();
+} else {
+    (async () => {
+        browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            switch (request.action) {
+                case constants.ACTIONS.UPLOAD_BASE_64:
+                    uploadBase64Action(sendResponse, request.img);
+                    break;
+                case constants.ACTIONS.GET_ALL_IMG_URLS:
+                    getAllImagesAction(sendResponse);
+                    /* Keep open -> async */
+                    return true;
+                case constants.ACTIONS.INIT_SCREENSHOT:
+                    initScrenshotAction();
+                    break;
             }
-        };
-        new Promise(resolve => {
-            resolve(sendImgUrls());
         });
-    }
-});
+
+        await importScripts();
+    })();
+}

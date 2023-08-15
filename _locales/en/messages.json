@@ -4,7 +4,7 @@
   },
 
   "extensionDescription": {
-    "message": "Either select an image through the context menu or click the extension icon and view all images to perform various operations on them via ImgOps.com."
+    "message": "Capture screenshots, right-click on pictures, or get an an overview of all pics in the tab, to either (bulk) download or use them on ImgOps.com."
   },
 
   "contextMenuTitle": {
@@ -15,16 +15,71 @@
     "message": "ImgOps ›"
   },
 
-  "foundImages": {
-    "message": "Retrieved image URLs"
+  "capture": {
+    "message": "Screenshot"
+  },
+
+  "changeShortcuts": {
+    "message": "Shortcuts"
+  },
+
+  "options": {
+    "message": "Options"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Scrape pictures and display them when opening the popup"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Picture scraping disabled"
+  },
+
+  "downloadImgs": {
+    "message": "Download"
+  },
+  "selectAll": {
+    "message": "Select all"
+  },
+
+  "reload": {
+    "message": "Reload popup"
+  },
+
+  "copy": {
+    "message": "Copy"
+  },
+
+  "copied": {
+    "message": "Picture has been copied to the clipboard! (Press CTRL + V to paste 📋)"
+  },
+
+  "save": {
+    "message": "Save"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Exit"
+  },
+
+  "kbdExit": {
+    "message": "You can also use the following keys to exit:"
+  },
+
+  "screenshotInfo": {
+    "message": "Drag anywhere on the page to start selection OR press the Exit button"
   },
 
   "noImages": {
-    "message": "No image URLs found"
+    "message": "No picture URLs found"
   },
 
   "errorimgNotSupported": {
-    "message": "ImgOps does not support the format of this image"
+    "message": "ImgOps does not support the format of this picture"
   },
 
   "errorUnexpected": {
@@ -36,10 +91,18 @@
   },
 
   "errorFiles": {
-    "message": "Image(s) couldn't be converted into file(s)"
+    "message": "Picture(s) couldn't be converted into file(s)"
   },
-  
-  "errorImageLoad" : {
-    "message": "Images could not be loaded"
+
+  "errorImageLoad": {
+    "message": "Pictures could not be loaded"
+  },
+
+  "numberTooSmall": {
+    "message": "Provided number is too small"
+  },
+
+  "notSupported": {
+    "message": "Page doesn't support scripting or wasn't fully loaded yet"
   }
 }

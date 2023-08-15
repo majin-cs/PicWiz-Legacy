@@ -1,0 +1,115 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "Chụp ảnh màn hình, nhấp phải chuột vào hình ảnh hoặc xem tổng quan tất cả trong tab để tải xuống (nhiều) hoặc sử dụng trên ImgOps.com."
+  },
+
+  "contextMenuTitle": {
+    "message": "Mở với ImgOps 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "capture": {
+    "message": "Chụp ảnh màn hình"
+  },
+
+  "changeShortcuts": {
+    "message": "Phím tắt"
+  },
+
+  "options": {
+    "message": "Tùy chọn"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Tải tất cả hình ảnh của tab khi mở cửa sổ pop-up"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Vô hiệu hóa trích xuất hình ảnh"
+  },
+
+  "downloadImgs": {
+    "message": "Tải xuống"
+  },
+
+  "selectAll": {
+    "message": "Chọn tất cả"
+  },
+
+  "reload": {
+    "message": "Tải lại pop-up"
+  },
+
+  "copy": {
+    "message": "Sao chép"
+  },
+
+  "copied": {
+    "message": "Hình ảnh đã được sao chép vào clipboard! (Nhấn CTRL + V để dán 📋)"
+  },
+
+  "save": {
+    "message": "Lưu"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Thoát"
+  },
+
+  "kbdExit": {
+    "message": "Bạn cũng có thể sử dụng các phím sau để thoát:"
+  },
+
+  "screenshotInfo": {
+    "message": "Kéo bất kỳ đâu trên trang để bắt đầu chọn hoặc nhấn nút thoát"
+  },
+
+  "foundImages": {
+    "message": "Hình ảnh tìm thấy"
+  },
+
+  "noImages": {
+    "message": "Không tìm thấy URL hình ảnh"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps không hỗ trợ định dạng hình ảnh đã chọn"
+  },
+
+  "errorUnexpected": {
+    "message": "Đã xảy ra lỗi không xác định"
+  },
+
+  "errorBlob": {
+    "message": "Không thể tạo BLOB từ hình ảnh mã Base64"
+  },
+
+  "errorFiles": {
+    "message": "Không thể chuyển đổi hình ảnh thành tệp"
+  },
+
+  "errorImageLoad": {
+    "message": "Không thể tải hình ảnh"
+  },
+
+  "numberTooSmall": {
+    "message": "Số đã truyền quá nhỏ"
+  },
+
+  "notSupported": {
+    "message": "Trang không hỗ trợ kịch bản hoặc chưa được tải hoàn chỉnh"
+  }
+}
+
+  

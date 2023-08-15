@@ -1,0 +1,25 @@
+/* (Keep options style minimal) */
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: sans-serif;
+  margin: 1rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.option-btn {
+    user-select: none;
+    cursor: pointer;
+    width: max-content;
+}

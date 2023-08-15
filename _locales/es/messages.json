@@ -1,0 +1,113 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "Captura capturas de pantalla, haz clic derecho en las imágenes para obtener una vista general en la pestaña y descárgalas o úsalas en ImgOps.com."
+  },
+
+  "contextMenuTitle": {
+    "message": "Abrir con ImgOps 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "ImgOps ›"
+  },
+
+  "capture": {
+    "message": "Captura de pantalla"
+  },
+
+  "changeShortcuts": {
+    "message": "Atajos"
+  },
+
+  "options": {
+    "message": "Opciones"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Cargar una vista previa de todas las imágenes de la pestaña al abrir el menú emergente"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Desactivado el rastreo de imágenes"
+  },
+
+  "downloadImgs": {
+    "message": "Descargar"
+  },
+
+  "selectAll": {
+    "message": "Seleccionar todo"
+  },
+
+  "reload": {
+    "message": "Recargar menú emergente"
+  },
+
+  "copy": {
+    "message": "Copiar"
+  },
+
+  "copied": {
+    "message": "¡La imagen ha sido copiada al portapapeles! (Presione CTRL + V para pegar 📋)"
+  },
+
+  "save": {
+    "message": "Guardar"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Salir"
+  },
+
+  "kbdExit": {
+    "message": "También puede salir utilizando las siguientes teclas:"
+  },
+
+  "screenshotInfo": {
+    "message": "Arrastre en cualquier parte de la página para iniciar la selección O presione el botón de salida"
+  },
+
+  "foundImages": {
+    "message": "Imágenes encontradas"
+  },
+
+  "noImages": {
+    "message": "No se encontraron URLs de imágenes"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps no admite el formato de imagen seleccionado"
+  },
+
+  "errorUnexpected": {
+    "message": "Se ha producido un error desconocido"
+  },
+
+  "errorBlob": {
+    "message": "No se pudo crear un objeto BLOB a partir de la imagen en Base64"
+  },
+
+  "errorFiles": {
+    "message": "No se pudo convertir la(s) imagen(es) en archivo(s)"
+  },
+
+  "errorImageLoad": {
+    "message": "No se pudieron cargar las imágenes"
+  },
+
+  "numberTooSmall": {
+    "message": "El número proporcionado es demasiado pequeño"
+  },
+
+  "notSupported": {
+    "message": "La página no admite la ejecución de scripts o no se ha cargado completamente"
+  }
+}

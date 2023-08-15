@@ -4,7 +4,7 @@
   },
 
   "extensionDescription": {
-    "message": "Wählen Sie entweder ein Bild über das Kontextmenü aus oder klicken Sie auf das Erweiterungssymbol für eine Übersicht aller Bilder aus, um verschiedene Operationen mit diesen über ImgOps.com durchzuführen."
+    "message": "Screenshots aufnehmen, Bilder mit Rechtsklick auswählen oder eine Übersicht aller im Tab anzeigen, um sie entweder herunterzuladen oder auf ImgOps.com zu verwenden"
   },
 
   "contextMenuTitle": {
@@ -15,8 +15,68 @@
     "message": "ImgOps ›"
   },
 
+  "capture": {
+    "message": "Bildschirmfoto"
+  },
+
+  "changeShortcuts": {
+    "message": "Shortcuts"
+  },
+
+  "options": {
+    "message": "Optionen"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "Lade eine Übersicht aller Bilder des Tabs, wenn das Popup geöffnet wird"
+  },
+
+  "loadImagesDisabled": {
+    "message": "Bilder scraping deaktiviert"
+  },
+
+  "downloadImgs": {
+    "message": "Herunterladen"
+  },
+
+  "selectAll": {
+    "message": "Alle auswählen"
+  },
+
+  "reload": {
+    "message": "Popup neu laden"
+  },
+
+  "copy": {
+    "message": "Kopieren"
+  },
+
+  "copied": {
+    "message": "Das Bild wurde in die Zwischenablage kopiert! (Drücken Sie CTRL + V zum Einfügen 📋)"
+  },
+
+  "save": {
+    "message": "Speichern"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "Beenden"
+  },
+
+  "kbdExit": {
+    "message": "Du kannst auch folgende Tasten zum Beenden wählen:"
+  },
+
+  "screenshotInfo": {
+    "message": "Ziehe irgendwo über die Seite, um die Auswahl zu starten ODER drück den Beenden Knopf"
+  },
+
   "foundImages": {
-    "message": "Gefundene Bild-Urls"
+    "message": "Gefundene Bilder"
   },
 
   "noImages": {
@@ -27,19 +87,27 @@
     "message": "ImgOps unterstützt das Format des ausgewählten Bildes nicht"
   },
 
-  "errorUnexpected" : {
+  "errorUnexpected": {
     "message": "Ein nicht bekannter Fehler ist aufgetreten"
   },
 
-  "errorBlob" : {
+  "errorBlob": {
     "message": "Es konnte kein BLOB aus dem Base64-Bild erstellt werden"
   },
 
-  "errorFiles" : {
+  "errorFiles": {
     "message": "Bild(er) konnte(n) nicht in Datei(en) umgewandelt werden"
   },
 
-  "errorImageLoad" : {
+  "errorImageLoad": {
     "message": "Bilder konnten nicht geladen werden"
+  },
+
+  "numberTooSmall": {
+    "message": "Übergebene Zahl ist zu klein"
+  },
+
+  "notSupported": {
+    "message": "Seite unterstützt kein Scripting oder wurde nicht vollständig geladen"
   }
 }

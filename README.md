@@ -1,13 +1,14 @@
 <p align="center"><img width="196" height="196" src="https://i.imgur.com/zIXGZCg.png"></p>
 <h1 align="center">PicWiz Legacy</h1>
 
-A Manifest V2 Browser Extension that makes it possible to perform various operations on images via [ImgOps.com](https://ImgOps.com) by either selecting an image through the context menu or clicking the extension icon to view all images in the current tab and choosing an image.
+> Capture screenshots, right-click on pictures, or get an an overview of all pics in the tab, to either (bulk) download or use them on [ImgOps.com](https://ImgOps.com).
 
 This extension is not affiliated with ImgOps.com - it merely simplifies the way you can access the website.
 
-<sub>For the Manifest V3 extension go here: [PicWiz](https://github.com/majin-cs/PicWiz) (*may not yet be supported by your browser)</sub>
+<sub>For the Manifest V3 extension go here: [PicWiz](https://github.com/majin-cs/PicWiz)</sub>
 
-----
+---
+
 ## Installation
 
 <a href="https://addons.mozilla.org/en-US/firefox/addon/picwiz-legacy/">
@@ -18,24 +19,56 @@ This extension is not affiliated with ImgOps.com - it merely simplifies the way 
 </a>
 
 #### Or from GitHub:
-- Download the zip from the [release section](https://github.com/majin-cs/PicWiz-Legacy/releases) and either [directly use it in Firefox](https://extensionworkshop.com/documentation/publish/submitting-an-add-on/) or unpack it and [use it in Chrome ](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked)
+
+1. Download the zip from the [release section](https://github.com/majin-cs/PicWiz-Legacy/releases) 
+- Either use the zip in **Firefox** by visting [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) and loading it as temporary add-on 
+- Or unpack it and use it indefinitely in **Chrome** by visting [chrome://extensions/](chrome://extensions/), clicking on "Load unpacked" in the top left corner and selecting the unzipped extension folder
 
 ## Features
 
-- Easily access ImgOps.com by opening the context menu on an image
-- Uploads Base64 / Data-URL Images automatically to ImgOps.com upon choosing
-- Provides an overview + ImgOps link for all images in the current tab via the extension popup
+1. Easily access ImgOps.com by opening the context menu on any picture in the browser
+   - If it is of type data:url (Base64) upload it automatically to ImgOps.com
+2. Provides an overview of all pictures found in the active tab in the extension popup where you then can:
+   - Open them individually on ImgOps.com
+   - Select pictures or simply press the _Select all_ checkbox to (bulk) download all selected pictures
+3. Take a screenshot (shortcut defaults to `Ctrl + Shift + S`) and pick one of the options:
+   - Copy to the clipboard
+   - Save
+   - Open on ImgOps.com
 
-## Screenshots
+## Options
 
-| Right click an image | Perform various image operations such as *Reverse Image Search* on ImgOps.com |
-| -------- | -------- |
+| Name             | Toggles                                                 |
+| ---------------- | ------------------------------------------------------- |
+| loadImagesOnOpen | Scrape pictures and display them when opening the popup |
+
+## Shortcuts
+
+| Name             | Default Keys       |
+| ---------------- | ------------------ |
+| Screenshot       | `Ctrl + Shift + S` |
+
+## Permissions
+
+| Name             | Required for                                                             | 
+| ---------------- | ------------------------------------------------------------------------ |
+| "<all_urls>"     | Having the screenshot feature work on every website (importing scripts)  |
+| "contextMenus",  | Displaying the ImgOps menu option when right-clicking a picture          |
+| "activeTab"      | Scraping images and taking the screenshot                                |
+| "clipboardWrite" | Copying screenhots to the clipboard                                      |
+| "notifications"  | Notifying when picture was copied                                        |
+| "storage"        | Saving options                                                           |
+| "downloads"      | Downloading selected pictures                                            |
+
+## Showcase
+
+| Right-click a picture  | Perform various image operations such as _Reverse Image Search_ on ImgOps.com |
+| ---------------------- | ----------------------------------------------------------------------------- |
 | ![Context Menu Item](https://i.imgur.com/CECo9n7.png) | ![ImgOps Website Options](https://i.imgur.com/LBWH7qV.png) |
 
-
-| Get an overview of all images in the current tab |
-| -------- |
-| ![Open Extension Popup](https://i.imgur.com/IFERT3h.gif)  |
+| Select pictures to download or take a screenshot      |
+| -------------------------------------------------------- |
+| ![Extension Popup Showcase](https://i.imgur.com/sfx2t7L.gif) |
 
 
 ## License

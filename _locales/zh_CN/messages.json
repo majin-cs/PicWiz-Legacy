@@ -1,0 +1,113 @@
+{
+  "extensionName": {
+    "message": "PicWiz"
+  },
+
+  "extensionDescription": {
+    "message": "截图、右键点击图片，或在标签中获取所有图片的概览，以便（批量）下载或在ImgOps.com上使用。"
+  },
+
+  "contextMenuTitle": {
+    "message": "使用 ImgOps 打开 🔎"
+  },
+
+  "goToImgOps": {
+    "message": "前往 ImgOps ›"
+  },
+
+  "capture": {
+    "message": "屏幕截图"
+  },
+
+  "changeShortcuts": {
+    "message": "快捷键"
+  },
+
+  "options": {
+    "message": "选项"
+  },
+
+  "loadImagesOnOpen": {
+    "message": "在弹出窗口打开时加载标签中的所有图片概览"
+  },
+
+  "loadImagesDisabled": {
+    "message": "已禁用图片采集"
+  },
+
+  "downloadImgs": {
+    "message": "下载"
+  },
+
+  "selectAll": {
+    "message": "全选"
+  },
+
+  "reload": {
+    "message": "重新加载弹出窗口"
+  },
+
+  "copy": {
+    "message": "复制"
+  },
+
+  "copied": {
+    "message": "图片已复制到剪贴板！（按CTRL + V粘贴 📋）"
+  },
+
+  "save": {
+    "message": "保存"
+  },
+
+  "cancel": {
+    "message": "✕"
+  },
+
+  "exit": {
+    "message": "退出"
+  },
+
+  "kbdExit": {
+    "message": "您还可以选择以下按键退出："
+  },
+
+  "screenshotInfo": {
+    "message": "在页面的任意位置拖动以开始选择，或按下退出按钮"
+  },
+
+  "foundImages": {
+    "message": "已找到的图片"
+  },
+
+  "noImages": {
+    "message": "未找到图像URL"
+  },
+
+  "errorimgNotSupported": {
+    "message": "ImgOps不支持所选图片的格式"
+  },
+
+  "errorUnexpected": {
+    "message": "出现未知错误"
+  },
+
+  "errorBlob": {
+    "message": "无法从Base64图片创建BLOB"
+  },
+
+  "errorFiles": {
+    "message": "无法将图片转换为文件"
+  },
+
+  "errorImageLoad": {
+    "message": "无法加载图片"
+  },
+
+  "numberTooSmall": {
+    "message": "输入的数字过小"
+  },
+
+  "notSupported": {
+    "message": "页面不支持脚本或未完全加载"
+  }
+}
