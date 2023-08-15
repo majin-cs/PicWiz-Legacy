@@ -68,7 +68,7 @@ This extension is not affiliated with ImgOps.com - it merely simplifies the way 
 
 | Select pictures to download or take a screenshot      |
 | -------------------------------------------------------- |
-| ![Extension Popup Showcase](https://i.imgur.com/sfx2t7L.gif) |
+| ![Extension Popup Showcase](https://i.imgur.com/q2gl71U.gif) |
 
 
 ## License
