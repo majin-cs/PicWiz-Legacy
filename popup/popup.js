@@ -1,5 +1,5 @@
-import { ACTIONS, ERRORS, i18n } from "../shared/constants.js";
-import { runInCurrenTab, removeElementWithChildren } from "../shared/utils.js";
+import { ACTIONS, ERRORS, i18n } from '../shared/constants.js';
+import { runInCurrenTab, removeElementWithChildren } from '../shared/utils.js';
 
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
@@ -167,12 +167,12 @@ function renderImages(imgUrls) {
         event.stopPropagation();
       }
       if (imgSelectCheck.checked) {
-        imgCard.setAttribute("selected", true)
+        imgCard.setAttribute('selected', true)
         selectedImgs.push(imgUrl);
       } else {
         const selectAllCheck = document.getElementById('select-all-checkbox');
         selectAllCheck.checked = false;
-        imgCard.removeAttribute("selected");
+        imgCard.removeAttribute('selected');
         selectedImgs.splice(selectedImgs.indexOf(imgUrl), 1);
       }
     };

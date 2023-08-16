@@ -79,6 +79,10 @@
     "message": "Images trouvées"
   },
 
+  "notifications": {
+    "message": "Notifications"
+  },
+
   "noImages": {
     "message": "Aucune URL d'image trouvée"
   },

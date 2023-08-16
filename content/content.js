@@ -3,19 +3,37 @@ const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 let utils;
 let constants;
 let capture;
-let captureCSSInjected = false;
+let imported;
 
-/******************************************************************************/
-
-async function importScripts() {
-    constants = await import(browserAPI.runtime.getURL("shared/constants.js"));
-    utils = await import(browserAPI.runtime.getURL("shared/utils.js"));
-    capture = await import(browserAPI.runtime.getURL("content/capture.js"));
+function importScripts() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (imported) {
+                resolve(true);
+            } else {
+                const constantsPath = browserAPI.runtime.getURL("shared/constants.js");
+                const utilsPath = browserAPI.runtime.getURL("shared/utils.js");
+                const capturePath = browserAPI.runtime.getURL("content/capture.js");
+                constants = await import(constantsPath);
+                utils = await import(utilsPath);
+                capture = await import(capturePath);
+                imported = true;
+                resolve(true);
+            }
+        } catch (error) {
+            resolve(false);
+        }
+    });
 }
 
 function scriptingNotSupported() {
-    /* browserAPI not usable in this state (for content scripts) */
+    // browserAPI not usable in this state (for content scripts)
     console.log(`PicWiz \n------\nPopup not supported by: \n${window.location.href}`);
+}
+
+function cssIsInjected(searchableVarName) {
+    const computedStyles = getComputedStyle(document.body);
+    return computedStyles.getPropertyValue(searchableVarName);
 }
 
 async function dataURLToBlob(dataURL) {
@@ -61,18 +79,20 @@ function scrapeImages() {
 /* ACTIONS */
 
 function uploadBase64Action(sendResponse, img) {
+    uploading = true;
     const inputElement = document.querySelector(constants.FILE_UPLOAD_ID);
     if (img && inputElement && inputElement.type === 'file') {
         injectBase64Img(inputElement, img);
+        sendResponse({ error: false });
     } else {
-        sendResponse({ error: true, message: constants.ERRORS.UNEXPECTED });
+        sendResponse({ error: true, messsage: constants.ERRORS.UNEXPECTED });
     }
 }
 
 function getAllImagesAction(sendResponse) {
     try {
         /* Check if loading all images is enabled in options */
-        browserAPI.storage.sync.get([constants.OPTIONS.LOAD_IMAGES], (res) => {
+        browserAPI.storage.sync.get('loadImagesOnOpen', (res) => {
             if (res.loadImagesOnOpen === true) {
                 const imgUrls = scrapeImages();
                 sendResponse({ imgUrls });
@@ -85,13 +105,13 @@ function getAllImagesAction(sendResponse) {
     }
 }
 
-function initScrenshotAction() {
+function initScrenshotAction(sendResponse) {
     /* Only inject css once per tab & only when screenshot action is sent */
-    if (!captureCSSInjected) {
-        browserAPI.runtime.sendMessage({ action: constants.ACTIONS.INJECT_CSS, path: "content/capture.css" }); /* Path relative from service_worker.js */
-        captureCSSInjected = true;
+    if (!cssIsInjected('--pic-wiz-css-injected')) {
+        browserAPI.runtime.sendMessage({ action: constants.ACTIONS.INJECT_CSS, path: 'content/capture.css' });
     }
     capture.initCapture();
+    sendResponse({ error: false });
 }
 
 /******************************************************************************/
@@ -101,22 +121,25 @@ function initScrenshotAction() {
 if (!browserAPI.runtime) {
     scriptingNotSupported();
 } else {
-    (async () => {
-        browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            switch (request.action) {
-                case constants.ACTIONS.UPLOAD_BASE_64:
-                    uploadBase64Action(sendResponse, request.img);
-                    break;
-                case constants.ACTIONS.GET_ALL_IMG_URLS:
-                    getAllImagesAction(sendResponse);
-                    /* Keep open -> async */
-                    return true;
-                case constants.ACTIONS.INIT_SCREENSHOT:
-                    initScrenshotAction();
-                    break;
+    browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        importScripts().then(success => {
+            if (success) {
+                switch (request.action) {
+                    case constants.ACTIONS.GET_ALL_IMG_URLS:
+                        getAllImagesAction(sendResponse);
+                        return true;
+                    case constants.ACTIONS.UPLOAD_BASE_64:
+                        uploadBase64Action(sendResponse, request.img);
+                        break;
+                    case constants.ACTIONS.INIT_SCREENSHOT:
+                        initScrenshotAction(sendResponse);
+                        break;
+                }
+            } else {
+                scriptingNotSupported();
             }
         });
-
-        await importScripts();
-    })();
+        /* Keep open */
+        return true;
+    });
 }

@@ -1,5 +1,5 @@
-import { isValidImgUrl, isBase64Image, generateNumUUID, runInCurrenTab, delay } from "../shared/utils.js";
-import { IMG_OPS_URLs, ACTIONS, CONTEXT_MENU_ITEM_ID, i18n, ERRORS, SHORTCUT_URL } from "../shared/constants.js";
+import { isValidImgUrl, isBase64Image, generateNumUUID, runInCurrenTab, delay } from '../shared/utils.js';
+import { IMG_OPS_URLs, ACTIONS, CONTEXT_MENU_ITEM_ID, i18n, ERRORS, SHORTCUT_URL, OPTIONS } from '../shared/constants.js';
 
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
@@ -36,8 +36,8 @@ async function sendUploadAction(tab, imgUrl) {
   const uploadTabListener = async (tabId, info) => {
     if (info.status === 'complete' && tabId === tab.id) {
       const res = await browserAPI.tabs.sendMessage(tab.id, { action: ACTIONS.UPLOAD_BASE_64, img: imgUrl });
-      if (res && res.error) {
-        console.error(response.message);
+      if(res && res.error) {
+        console.error(res.message)
       }
       browserAPI.tabs.onUpdated.removeListener(uploadTabListener);
     }
@@ -60,7 +60,7 @@ function openImgOps(imgUrl) {
 function takeScreenshot() {
   return new Promise((resolve, reject) => {
     try {
-      browserAPI.tabs.captureVisibleTab(null, { format: "png" }, dataUri => {
+      browserAPI.tabs.captureVisibleTab(null, { format: 'png' }, dataUri => {
         if (browserAPI.runtime.lastError) {
           reject(browserAPI.runtime.lastError);
         } else {
@@ -80,7 +80,7 @@ function copyImage(arrayBuffer) {
       if (!arrayBuffer) {
         resolve(false);
       }
-      browserAPI.clipboard.setImageData(arrayBuffer, "png");
+      browserAPI.clipboard.setImageData(arrayBuffer, 'png');
       resolve(true);
     } catch (error) {
       resolve(false);
@@ -88,20 +88,26 @@ function copyImage(arrayBuffer) {
   });
 }
 
-function sendNotification(message, title = i18n.EXT_NAME, name, type = "basic", callback) {
-  browserAPI.notifications.create(
-    name ?? `${i18n.EXT_NAME}-${generateNumUUID(5)}`,
-    {
-      type: type,
-      iconUrl: "/icons/196.png",
-      title: title,
-      message: message,
-    },
-    async (notificationId) => {
-      await delay(6000);
-      browserAPI.notifications.clear(notificationId);
+function sendNotification(message, title = i18n.EXT_NAME, name, type = 'basic', callback = () => { }) {
+  browserAPI.storage.sync.get('notifications', (res) => {
+    if (res.notifications === true) {
+      browserAPI.notifications.create(
+        name ?? `${i18n.EXT_NAME}-${generateNumUUID(5)}`,
+        {
+          type: type,
+          iconUrl: '/icons/196.png',
+          title: title,
+          message: message,
+        },
+        async (notificationId) => {
+          /* Dmismiss after amount of ms */
+          await delay(5000);
+          browserAPI.notifications.clear(notificationId);
+          callback(notificationId);
+        }
+      );
     }
-  );
+  });
 }
 
 async function downloadSequentially(urls) {
@@ -134,7 +140,7 @@ function onDownloadComplete(itemId) {
 browserAPI.contextMenus.create({
   id: CONTEXT_MENU_ITEM_ID,
   title: i18n.MENU_ITEM_TITLE,
-  contexts: ["image"],
+  contexts: ['image'],
 }, () => {
   if (browserAPI.runtime.lastError) {
     /* Ignore duplicate context menu item creation */
@@ -214,5 +220,7 @@ browserAPI.commands.onCommand.addListener((command) => {
 
 /* Default settings */
 browserAPI.runtime.onInstalled.addListener(() => {
-  browserAPI.storage.sync.set({ loadImagesOnOpen: true });
+  OPTIONS.TOGGLEABLE.forEach(option => {
+    browserAPI.storage.sync.set({ [option.name]: true });
+  });
 });

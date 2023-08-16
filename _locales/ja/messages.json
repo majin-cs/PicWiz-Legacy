@@ -79,6 +79,10 @@
     "message": "見つかった画像"
   },
 
+  "notifications": {
+    "message": "通知"
+  },
+
   "noImages": {
     "message": "画像URLが見つかりません"
   },

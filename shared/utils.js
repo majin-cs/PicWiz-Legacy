@@ -9,7 +9,7 @@ export function delay(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
 
-/* Check if URL ends with "valid" image extensions
+/* Check if URL ends with 'valid' image extensions
 Does not account for images with no OR manipulated file extensions! */
 export function isValidImgUrl(url) {
     const IMG_URL_REG = /^(https?:\/\/).+\.(jpg|jpeg|png|gif|bmp|svg|webp|ico|avif|apng|tif|tiff|jxl|heic|heif|ppm|pgm|pbm|pnm|raw|cr2|nef|orf|sr2)$/i;
@@ -22,7 +22,7 @@ export function isBase64Image(url) {
 
 export function generateNumUUID(digits = 8) {
     if (typeof digits != 'number' || digits <= 0) {
-        console.error("generateNumUUID failed with digits = " + digits);
+        console.error('generateNumUUID failed with digits = ' + digits);
         digits = 8;
     }
     const maxRandomPart = Math.pow(10, digits);
@@ -87,13 +87,13 @@ export async function runInCurrenTab(callback) {
 
 export function hide(element) {
     if (element) {
-        element.style.visibility = "hidden";
+        element.style.visibility = 'hidden';
     }
 }
 
 export function show(element) {
     if (element) {
-        element.style.visibility = "visible";
+        element.style.visibility = 'visible';
     }
 }
 
@@ -136,7 +136,7 @@ export function removeElementWithChildren(element) {
 }
 
 /* For scripts that do not need to use the browser.downloads API */
-/* Create fake element and add url as a "file" */
+/* Create fake element and add url as a 'file' */
 export function downloadUrl(url, filename) {
     if (!url || !filename) return false;
     const a = document.createElement('a');

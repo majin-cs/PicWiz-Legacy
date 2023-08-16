@@ -143,10 +143,8 @@ input:disabled {
   background-color: #e6e6e6;
 }*/
 
-.image-card:hover {
-  .image-preview {
-    filter: saturate(150%);
-  }
+.image-card:hover .image-preview {
+  filter: saturate(150%);
 }
 
 /* ImgOps Link */

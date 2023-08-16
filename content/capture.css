@@ -1,6 +1,7 @@
 /* Color vars */
 
 :root {
+  --pic-wiz-css-injected: 1;
   --pic-wiz-kbd-bg: #eee;
   --pic-wiz-kbd-border-color: #a1a1a1;
   --pic-wiz-text-color: #ececec;
@@ -52,58 +53,64 @@
   transition: all var(--pic-wiz-transition-length) ease;
 }
 
-/* Add !important to <button> styles to not be overwritten by website styles */
-.pic-wiz-btn {
-  pointer-events: auto !important;
-  cursor: pointer !important;
-  border: none !important;
-  border-radius: 10px !important;
-  user-select: none !important;
+.pic-wiz-select-options .pic-wiz-btn,
+.pic-wiz-capture-info .pic-wiz-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  user-select: none;
 
-  display: flex !important;
-  padding-inline: 10px !important;
-  padding-block: 6px !important;
-  align-items: center !important;
-  gap: 2px !important;
-  line-height: 20px !important;
-  white-space: nowrap !important;
+  display: flex;
+  padding-inline: 10px;
+  padding-block: 6px;
+  align-items: center;
+  gap: 2px;
+  line-height: 20px;
+  white-space: nowrap;
+  min-width: fit-content;
+  max-width: max-content;
 
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
   color: var(--pic-wiz-text-color);
-  background: rgba(51, 51, 54, 0.7) !important;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
-  backdrop-filter: blur(14px) !important;
-  transition: all var(--pic-wiz-transition-length) ease !important;
+  background: rgba(51, 51, 54, 0.7);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(14px);
+  filter: brightness(100%);
+  transition: all var(--pic-wiz-transition-length) ease;
 }
-.pic-wiz-btn:hover {
+.pic-wiz-btn:focus-visible {
+  outline: 2px solid white !important;
+}
+.pic-wiz-btn:hover,
+.pic-wiz-btn:focus-visible {
   filter: brightness(110%);
 }
 /* On btn click */
 .pic-wiz-btn:active {
-  scale: 95% !important;
-  filter: brightness(90%) !important;
+  scale: 95%;
+  filter: brightness(90%);
 }
 
-.pic-wiz-info-btn {
-  outline: 1px solid rgba(124, 124, 124, 0.8) !important;
-  font-size: 30px !important;
-  padding-inline: 20px !important;
-  padding-block: 14px !important;
-  border-radius: 14px !important;
+.pic-wiz-capture-info .pic-wiz-info-btn {
+  outline: 1px solid rgba(124, 124, 124, 0.8);
+  font-size: 30px;
+  padding-inline: 20px;
+  padding-block: 14px;
+  border-radius: 14px;
 }
 
 .pic-wiz-option-btn {
-  font-size: 18px !important;
+  font-size: 18px;
 }
 
-.pic-wiz-cancel-option-btn {
-  color: var(--pic-wiz-cancel-color) !important;
-  font-size: 15px !important;
-  border-radius: 50% !important;
-  width: 32px !important;
-  height: 32px !important;
-  padding-inline: none !important;
-  padding-block: none !important;
+.pic-wiz-select-options .pic-wiz-cancel-option-btn {
+  color: var(--pic-wiz-cancel-color);
+  font-size: 15px;
+  border-radius: 50%;
+  padding-inline: none;
+  padding-block: none;
 }
 
 .pic-wiz-kbd-section {
@@ -114,32 +121,40 @@
   gap: 8px;
 }
 
-/* Add !important to <kbd> styles to not be overwritten by website styles */
-.pic-wiz-kbd {
+.pic-wiz-capture-info .pic-wiz-kbd {
   pointer-events: auto;
-  user-select: none !important;
-  cursor: pointer !important;
-  font-weight: 500 !important;
-  font-family: Consolas, Liberation, Courier, monospace !important;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: Consolas, Liberation, Courier, monospace;
+  text-decoration: none;
 
-  color: #5e5e5e !important;
-  vertical-align: text-bottom !important;
-  background-color: var(--pic-wiz-kbd-bg) !important;
-  border: solid 2px var(--pic-wiz-kbd-border-color) !important;
-  border-bottom: solid 4px var(--pic-wiz-kbd-border-color) !important;
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25) !important;
-  border-radius: 5px !important;
-  padding: 5px !important;
-  font-size: 20px !important;
-  line-height: 18px !important;
-  display: inline-block !important;
-  box-sizing: border-box !important;
-  white-space: nowrap !important;
-  transition: all var(--pic-wiz-transition-length) ease !important;
+  display: inline-block;
+  min-width: fit-content;
+  max-width: max-content;
+  position: relative;
+  vertical-align: text-bottom;
+  padding: 5px;
+  box-sizing: border-box;
+
+  font-size: 20px;
+  line-height: 18px;
+  white-space: nowrap;
+
+  color: #5e5e5e;
+  background-color: var(--pic-wiz-kbd-bg);
+  border: solid 2px var(--pic-wiz-kbd-border-color);
+  border-radius: 5px;
+  border-bottom: solid 4px var(--pic-wiz-kbd-border-color);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  filter: brightness(100%);
+  transition: all var(--pic-wiz-transition-length) ease;
 }
-
+.pic-wiz-kbd:focus-visible,
 .pic-wiz-kbd:hover {
-  animation: scalePulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+  outline: none;
+  animation: scalePulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  filter: brightness(110%);
 }
 
 @keyframes scalePulse {

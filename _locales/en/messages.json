@@ -74,6 +74,14 @@
     "message": "Drag anywhere on the page to start selection OR press the Exit button"
   },
 
+  "foundImages": {
+    "message": "Images found"
+  },
+
+  "notifications": {
+    "message": "Notifications"
+  },
+
   "noImages": {
     "message": "No picture URLs found"
   },

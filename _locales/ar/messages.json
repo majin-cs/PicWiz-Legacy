@@ -79,6 +79,10 @@
     "message": "الصور الموجودة"
   },
 
+  "notifications": {
+    "message": "إشعارات"
+  },
+
   "noImages": {
     "message": "لا توجد عناوين URL للصور"
   },

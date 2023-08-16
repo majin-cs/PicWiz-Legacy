@@ -78,6 +78,10 @@
   "foundImages": {
     "message": "पाए गए चित्र"
   },
+  
+  "notifications": {
+    "message": "सूचनाएं"
+  },
 
   "noImages": {
     "message": "कोई चित्र URL नहीं मिली"

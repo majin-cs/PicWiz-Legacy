@@ -79,6 +79,10 @@
     "message": "Hình ảnh tìm thấy"
   },
 
+  "notifications": {
+    "message": "Thông báo"
+  },
+
   "noImages": {
     "message": "Không tìm thấy URL hình ảnh"
   },

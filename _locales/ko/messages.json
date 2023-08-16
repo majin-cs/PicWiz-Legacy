@@ -79,6 +79,10 @@
     "message": "발견된 이미지"
   },
 
+  "notifications": {
+    "message": "알림"
+  },
+
   "noImages": {
     "message": "이미지 URL을 찾을 수 없음"
   },

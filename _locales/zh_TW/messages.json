@@ -79,6 +79,10 @@
     "message": "已找到的图片"
   },
 
+  "notifications": {
+    "message": "通知"
+  },
+
   "noImages": {
     "message": "未找到图像URL"
   },

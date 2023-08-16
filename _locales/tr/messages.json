@@ -78,6 +78,10 @@
     "foundImages": {
       "message": "Bulunan Resimler"
     },
+
+    "notifications": {
+      "message": "Bildirimler"
+    },
   
     "noImages": {
       "message": "Resim URL'leri bulunamadı"

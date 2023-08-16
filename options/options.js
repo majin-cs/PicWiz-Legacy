@@ -1,23 +1,43 @@
-import { i18n, OPTIONS, ACTIONS } from "../shared/constants.js";
+import { i18n, OPTIONS, ACTIONS } from '../shared/constants.js';
 
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 /******************************************************************************/
 
-/* TODO: If more options are added -> Create Factory for creating option elements */
-
 const renderOptions = () => {
-    const loadImagesDesc = document.getElementById('load-images-desc');
-    loadImagesDesc.textContent = OPTIONS.LOAD_IMAGES_DESC;
 
-    const loadImagesCheckbox = document.getElementById('load-images-checkbox');
-    browserAPI.storage.sync.get([OPTIONS.LOAD_IMAGES], (result) => {
-        loadImagesCheckbox.checked = result.loadImagesOnOpen || false;
-    });
+    /* Build all toggleable options */
 
-    loadImagesCheckbox.addEventListener('change', () => {
-        browserAPI.storage.sync.set({ loadImagesOnOpen: loadImagesCheckbox.checked });
+    const body = document.body;
+    const fragment = document.createDocumentFragment();
+    OPTIONS.TOGGLEABLE.forEach(option => {
+        const optionLabel = document.createElement('label');
+        optionLabel.className = 'option';
+
+        const optionCheck = document.createElement('input');
+        optionCheck.type = 'checkbox';
+        optionCheck.id = `${option.name}-checkbox`;
+
+        browserAPI.storage.sync.get([option.name], (result) => {
+            optionCheck.checked = result[option.name] || false;
+        });
+
+        optionCheck.onchange = () => {
+            browserAPI.storage.sync.set({ [option.name]: optionCheck.checked });
+        };
+
+        const optionText = document.createElement('span');
+        optionText.type = 'checkbox';
+        optionText.id = `${option.name}-desc`;
+        optionText.textContent = option.description;
+
+        optionLabel.appendChild(optionCheck);
+        optionLabel.appendChild(optionText);
+        fragment.appendChild(optionLabel);
     });
+    body.appendChild(fragment);
+
+    /* Other option items */
 
     const shortcutBtn = document.getElementById('shortcut-btn');
     shortcutBtn.textContent = i18n.CHANGE_SHORTCUTS;

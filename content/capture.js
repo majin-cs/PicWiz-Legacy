@@ -14,17 +14,17 @@ const selectAreaOutline = `1px solid white`;
 const selectAreaShadow = `0 0 0 99999px rgba(0,0,0,${bgOpacity})`;
 const selectBg = `rgba(0, 0, 0, ${bgOpacity})`;
 
-const bgClass = "pic-wiz-bg"
-const overlayClass = "pic-wiz-overlay"
-const optionsClass = "pic-wiz-select-options";
-const optionBtnClass = "pic-wiz-btn pic-wiz-option-btn";
-const cancelOptionBtnClass = "pic-wiz-cancel-option-btn pic-wiz-btn";
-const infoBtnClass = "pic-wiz-btn pic-wiz-info-btn";
-const infoClass = "pic-wiz-capture-info";
-const infoTitleClass = "pic-wiz-title";
-const kdbTitleClass = "pic-wiz-title"
-const kbdSectionClass = "pic-wiz-kbd-section"
-const kbdClass = "pic-wiz-kbd";
+const bgClass = 'pic-wiz-bg'
+const overlayClass = 'pic-wiz-overlay'
+const optionsClass = 'pic-wiz-select-options';
+const optionBtnClass = 'pic-wiz-btn pic-wiz-option-btn';
+const cancelOptionBtnClass = 'pic-wiz-cancel-option-btn pic-wiz-btn';
+const infoBtnClass = 'pic-wiz-btn pic-wiz-info-btn';
+const infoClass = 'pic-wiz-capture-info';
+const infoTitleClass = 'pic-wiz-title';
+const kdbTitleClass = 'pic-wiz-title'
+const kbdSectionClass = 'pic-wiz-kbd-section'
+const kbdClass = 'pic-wiz-kbd';
 
 /* Main variables */
 
@@ -39,7 +39,7 @@ let selectArea;
 let captureInfo;
 let selectOptions;
 
-const quitKeys = ["Escape", "Delete", "Q", "q", "F4", "Pause"];
+const quitKeys = ['Escape', 'Delete', 'Q', 'q', 'F4', 'Pause'];
 
 /******************************************************************************/
 
@@ -50,28 +50,28 @@ function renderCaptureInfo() {
     captureInfo.className = infoClass;
     captureInfo.style.zIndex = `${maxZIdx}`;
 
-    const captureInfoTitle = document.createElement("div");
+    const captureInfoTitle = document.createElement('div');
     captureInfoTitle.className = infoTitleClass;
     captureInfoTitle.textContent = constants.i18n.SCREENSHOT_INFO;
 
-    const exitBtn = document.createElement("button");
+    const exitBtn = document.createElement('button');
     exitBtn.className = infoBtnClass;
     exitBtn.textContent = constants.i18n.EXIT;
-    exitBtn.style.color = "#ff4747";
-    exitBtn.addEventListener("click", quitCapture);
+    exitBtn.style.color = '#ff4747';
+    exitBtn.addEventListener('click', quitCapture);
 
-    const kbdTitle = document.createElement("div");
+    const kbdTitle = document.createElement('div');
     kbdTitle.className = kdbTitleClass;
     kbdTitle.textContent = constants.i18n.KBD_EXIT;
 
-    const kbdSection = document.createElement("div");
+    const kbdSection = document.createElement('div');
     kbdSection.className = kbdSectionClass;
 
     quitKeys.forEach(str => {
-        const kbdElement = document.createElement('kbd');
+        const kbdElement = document.createElement('button');
         kbdElement.textContent = str;
         kbdElement.className = kbdClass;
-        kbdElement.addEventListener("click", quitCapture);
+        kbdElement.addEventListener('click', quitCapture);
         kbdSection.appendChild(kbdElement);
     });
 
@@ -80,14 +80,16 @@ function renderCaptureInfo() {
     captureInfo.appendChild(kbdTitle);
     captureInfo.appendChild(kbdSection);
     document.body.appendChild(captureInfo);
+
+    exitBtn.focus({ preventScroll: true });
 }
 
 function renderOverlay() {
-    overlay = document.createElement("div");
+    overlay = document.createElement('div');
     overlay.className = overlayClass;
     overlay.style.zIndex = `${overlayZidx}`;
 
-    bg = document.createElement("div");
+    bg = document.createElement('div');
     bg.className = bgClass;
     bg.style.background = selectBg;
     bg.style.zIndex = `${bgZidx}`;
@@ -97,14 +99,14 @@ function renderOverlay() {
 }
 
 function renderSelectArea() {
-    selectArea = document.createElement("div");
-    selectArea.style.position = "fixed";
+    selectArea = document.createElement('div');
+    selectArea.style.position = 'fixed';
     selectArea.style.left = `${startX}px`;
     selectArea.style.top = `${startY}px`;
     selectArea.style.outline = `${selectAreaOutline}`;
     selectArea.style.boxShadow = `${selectAreaShadow}`;
     selectArea.style.zIndex = `${selectAreaZidx}`;
-    selectArea.style.pointerEvents = "none";
+    selectArea.style.pointerEvents = 'none';
     document.body.appendChild(selectArea);
 
     utils.hide(bg);
@@ -118,26 +120,26 @@ function renderSelectOptions(coords) {
     selectOptions.className = optionsClass;
     selectOptions.style.zIndex = `${maxZIdx}`;
 
-    const imgOpsBtn = document.createElement("button");
+    const imgOpsBtn = document.createElement('button');
     imgOpsBtn.className = optionBtnClass;
-    imgOpsBtn.style.color = "#2997ff";
+    imgOpsBtn.style.color = '#2997ff';
     imgOpsBtn.textContent = constants.i18n.GO_TO_IMG_OPS;
-    imgOpsBtn.addEventListener("click", openImgOps);
+    imgOpsBtn.addEventListener('click', openImgOps);
 
-    const copyBtn = document.createElement("button");
+    const copyBtn = document.createElement('button');
     copyBtn.className = optionBtnClass;
     copyBtn.textContent = constants.i18n.COPY;
-    copyBtn.addEventListener("click", copySelectArea);
+    copyBtn.addEventListener('click', copySelectArea);
 
-    const saveBtn = document.createElement("button");
+    const saveBtn = document.createElement('button');
     saveBtn.className = optionBtnClass;
     saveBtn.textContent = constants.i18n.SAVE;
-    saveBtn.addEventListener("click", saveSelectArea);
+    saveBtn.addEventListener('click', saveSelectArea);
 
-    const cancelBtn = document.createElement("button");
+    const cancelBtn = document.createElement('button');
     cancelBtn.className = cancelOptionBtnClass;
     cancelBtn.textContent = constants.i18n.CANCEL;
-    cancelBtn.addEventListener("click", quitCapture);
+    cancelBtn.addEventListener('click', quitCapture);
 
 
     selectOptions.appendChild(cancelBtn);
@@ -204,10 +206,10 @@ function handleMouseMove(event) {
         const width = mouse.x - startX;
         const height = mouse.y - startY;
 
-        selectArea.style.width = Math.abs(width) + "px";
-        selectArea.style.height = Math.abs(height) + "px";
-        selectArea.style.left = (width > 0 ? startX : mouse.x) + "px";
-        selectArea.style.top = (height > 0 ? startY : mouse.y) + "px";
+        selectArea.style.width = Math.abs(width) + 'px';
+        selectArea.style.height = Math.abs(height) + 'px';
+        selectArea.style.left = (width > 0 ? startX : mouse.x) + 'px';
+        selectArea.style.top = (height > 0 ? startY : mouse.y) + 'px';
     }
 }
 
@@ -237,10 +239,10 @@ function handleKeyDown(event) {
 /* Either activates or removes all relevant listeners for capture.js */
 function toggleEventListeners(activate) {
     const action = activate ? 'addEventListener' : 'removeEventListener';
-    overlay[action]("mousedown", handleMouseDown);
-    overlay[action]("mousemove", handleMouseMove);
-    overlay[action]("mouseup", handleMouseUp);
-    document[action]("keydown", handleKeyDown);
+    overlay[action]('mousedown', handleMouseDown);
+    overlay[action]('mousemove', handleMouseMove);
+    overlay[action]('mouseup', handleMouseUp);
+    document[action]('keydown', handleKeyDown);
 }
 
 /******************************************************************************/
@@ -303,8 +305,7 @@ async function runScreenshotOption(func) {
     if (screenshotURL) {
         successful = await func(screenshotURL);
     } else {
-        /* Maybe implement proper err notification */
-        console.error(constants.ERRORS.UNEXPECTED);
+        browserAPI.runtime.sendMessage({ action: constants.ACTIONS.NOTIFY, message: constants.ERRORS.UNEXPECTED });
     }
     if (successful) {
         quitCapture();
@@ -341,6 +342,7 @@ async function copySelectArea() {
             return true;
         } catch (err) {
             console.error(err);
+            browserAPI.runtime.sendMessage({ action: constants.ACTIONS.NOTIFY, message: constants.ERRORS.UNEXPECTED });
             return false;
         }
     });
