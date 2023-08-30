@@ -46,11 +46,11 @@ const quitKeys = ['Escape', 'Delete', 'Q', 'q', 'F4', 'Pause'];
 /* DOM related */
 
 function renderCaptureInfo() {
-    captureInfo = document.createElement('div');
+    captureInfo = document.createElement('section');
     captureInfo.className = infoClass;
     captureInfo.style.zIndex = `${maxZIdx}`;
 
-    const captureInfoTitle = document.createElement('div');
+    const captureInfoTitle = document.createElement('p');
     captureInfoTitle.className = infoTitleClass;
     captureInfoTitle.textContent = constants.i18n.SCREENSHOT_INFO;
 
@@ -60,11 +60,11 @@ function renderCaptureInfo() {
     exitBtn.style.color = '#ff4747';
     exitBtn.addEventListener('click', quitCapture);
 
-    const kbdTitle = document.createElement('div');
+    const kbdTitle = document.createElement('p');
     kbdTitle.className = kdbTitleClass;
     kbdTitle.textContent = constants.i18n.KBD_EXIT;
 
-    const kbdSection = document.createElement('div');
+    const kbdSection = document.createElement('section');
     kbdSection.className = kbdSectionClass;
 
     quitKeys.forEach(str => {
@@ -85,11 +85,11 @@ function renderCaptureInfo() {
 }
 
 function renderOverlay() {
-    overlay = document.createElement('div');
+    overlay = document.createElement('section');
     overlay.className = overlayClass;
     overlay.style.zIndex = `${overlayZidx}`;
 
-    bg = document.createElement('div');
+    bg = document.createElement('section');
     bg.className = bgClass;
     bg.style.background = selectBg;
     bg.style.zIndex = `${bgZidx}`;
@@ -99,7 +99,7 @@ function renderOverlay() {
 }
 
 function renderSelectArea() {
-    selectArea = document.createElement('div');
+    selectArea = document.createElement('section');
     selectArea.style.position = 'fixed';
     selectArea.style.left = `${startX}px`;
     selectArea.style.top = `${startY}px`;
@@ -116,7 +116,7 @@ function renderSelectArea() {
 function renderSelectOptions(coords) {
     if (!selectArea) return;
 
-    selectOptions = document.createElement('div');
+    selectOptions = document.createElement('section');
     selectOptions.className = optionsClass;
     selectOptions.style.zIndex = `${maxZIdx}`;
 
