@@ -1,9 +1,9 @@
 <p align="center"><img width="196" height="196" src="https://i.imgur.com/zIXGZCg.png"></p>
 <h1 align="center">PicWiz Legacy</h1>
 
-> Capture screenshots, right-click on pictures, or get an an overview of all pics in the tab, to either (bulk) download or use them on [ImgOps.com](https://ImgOps.com).
+Capture screenshots, right-click on pictures, or get an an overview of all pics in the tab, to either (bulk) download or use them on [ImgOps.com](https://ImgOps.com).
 
-This extension is not affiliated with ImgOps.com - it merely simplifies the way you can access the website.
+> This extension is not affiliated with ImgOps.com - it merely simplifies the way you can access the website.
 
 <sub>For the Manifest V3 extension go here: [PicWiz](https://github.com/majin-cs/PicWiz)</sub>
 
@@ -20,9 +20,10 @@ This extension is not affiliated with ImgOps.com - it merely simplifies the way 
 
 #### Or from GitHub:
 
-1. Download the zip from the [release section](https://github.com/majin-cs/PicWiz-Legacy/releases) 
-- Either use the zip in **Firefox** by visting [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) and loading it as temporary add-on 
-- Or unpack it and use it indefinitely in **Chrome** by visting [chrome://extensions/](chrome://extensions/), clicking on "Load unpacked" in the top left corner and selecting the unzipped extension folder
+1. Download the zip from the [release section](https://github.com/majin-cs/PicWiz-Legacy/releases)
+2. Choose your browser and follow the corresponding steps:
+   - For **Firefox** use the zip by visting `about:debugging#/runtime/this-firefox` and loading it as temporary add-on 
+   - For **Chrome** unpack the zip and use it indefinitely in by visting `chrome://extensions/`, then clicking on "Load unpacked" in the top left corner and finally selecting the unzipped extension folder
 
 ## Features
 
