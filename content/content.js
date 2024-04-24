@@ -75,7 +75,6 @@ function scrapeImages() {
 }
 
 /******************************************************************************/
-
 /* ACTIONS */
 
 function uploadBase64Action(sendResponse, img) {
@@ -115,8 +114,7 @@ function initScrenshotAction(sendResponse) {
 }
 
 /******************************************************************************/
-
-/* Register Listeners */
+/* Entry point */
 
 if (!browserAPI.runtime) {
     scriptingNotSupported();

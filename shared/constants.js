@@ -1,14 +1,12 @@
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 /******************************************************************************/
-
 /* HTML related */
 
 export const FILE_UPLOAD_ID = '#photo';
 export const CONTEXT_MENU_ITEM_ID = 'pic-wiz-menu-item';
 
-/* Actions for messaging between senders / listeners */
-
+/* Actions for messaging between Senders / Listeners */
 export const ACTIONS = {
     GET_ALL_IMG_URLS: 1,
     OPEN_IMG_OPS: 2,
@@ -20,11 +18,9 @@ export const ACTIONS = {
     NOTIFY: 8,
     COPY_IMAGE: 9,
 }
-
 export const SCREENSHOT_FORMAT = 'png';
 
 /* URLs */
-
 export const SHORTCUT_URL =  typeof browser !== 'undefined' ?  'https://support.mozilla.org/kb/manage-extension-shortcuts-firefox' : 'chrome://extensions/shortcuts';
 export const IMG_OPS_URLs = {
     ROOT: 'https://imgops.com/',
@@ -32,7 +28,6 @@ export const IMG_OPS_URLs = {
 }
 
 /* i18n Constants */
-
 export const i18n = {
     EXT_NAME: browserAPI.i18n.getMessage('extensionName'),
     MENU_ITEM_TITLE: browserAPI.i18n.getMessage('contextMenuTitle'),

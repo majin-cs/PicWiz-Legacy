@@ -70,7 +70,7 @@ Capture screenshots, right-click on pictures, or get an an overview of all pics 
 
 | Select pictures to download or take a screenshot      |
 | -------------------------------------------------------- |
-| ![Extension Popup Showcase](https://i.imgur.com/q2gl71U.gif) |
+| ![Extension Popup Showcase](https://i.imgur.com/nFmiCys.gif) |
 
 
 ## License

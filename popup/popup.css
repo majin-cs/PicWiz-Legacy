@@ -1,12 +1,13 @@
 /* Color vars */
 
 :root {
-  --bg-color: rgb(18, 18, 18);
+  --accent-color: #1767e3;
+  --bg-color: #1d1d1f;
   --text-color: #e7e7e7;
-  --img-card-bg: #333030;
   --link-color: #2997ff;
-  --accent-color: #8400ff;
-  --selected-color: #ac54ff;
+  --img-card-bg: rgb(51, 48, 48);
+  --hover-color: rgba(255, 255, 255, 0.15);
+  --selected-color: rgba(255, 255, 255, 0.3);
 }
 
 /* General */
@@ -33,6 +34,16 @@ input {
   accent-color: var(--accent-color);
 }
 
+@keyframes pulsate {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 /* Popup (Nav) Menu */
 
 .popup-menu {
@@ -57,7 +68,7 @@ input {
   text-align: center;
   gap: 6px;
   height: 30px;
-  padding-inline: 12px;
+  padding: 16px;
 
   border-radius: 10px;
   background: var(--img-card-bg);
@@ -68,10 +79,6 @@ input {
 input:disabled {
   cursor: not-allowed;
   opacity: 50%;
-}
-
-#select-all-btn {
-  margin-right: auto;
 }
 
 .ionicon {
@@ -103,68 +110,20 @@ input:disabled {
   margin-bottom: 20px;
 }
 
-/* Image Card */
-
-.image-card {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 180px;
-  height: fit-content;
-  background-color: var(--img-card-bg);
-  overflow: hidden;
-}
-
-[selected] {
-  outline: 2px solid var(--selected-color);
-}
-
-.img-select-checkbox {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
-}
-
-.image-preview {
-  user-select: none;
-  max-width: 100%;
-  max-height: 100%;
-  box-shadow: none;
-  transition: all 200ms ease-in-out;
-}
-
-/* Adjust <img/> bg color when transparency might occur
-.image-preview[src$=".png"],
-.image-preview[src$=".gif"],
-.image-preview[src$=".svg"],
-.image-preview[src$=".ico"] {
-  background-color: #e6e6e6;
-}*/
-
-.image-card:hover .image-preview {
-  filter: saturate(150%);
-}
-
 /* ImgOps Link */
 
 .imgops-link-btn {
+  visibility: hidden;
+  margin-left: auto;
+  padding: 8px;
+  border-radius: 8px;
+  z-index: 10;
+  border: none;
   cursor: pointer;
   user-select: none;
-  border: none;
-
-  width: 100%;
-  padding: 8px;
-
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-
+  background: transparent;
   color: var(--link-color);
-  background-color: var(--img-card-bg);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  transition: all 200ms ease;
+  font-weight: 600;
 }
 
 .imgops-link-btn:hover,
@@ -176,4 +135,61 @@ input:disabled {
 .popup-btn:enabled:active {
   scale: 98%;
   filter: brightness(90%);
+}
+
+/* Image Card */
+
+.image-preview {
+  user-select: none;
+  width: 90%;
+  height: 90%;
+  max-height: 300px;
+  display: block;
+  margin: auto;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.img-select-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  visibility: hidden;
+}
+
+.img-card {
+  position: relative;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: fit-content;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.img-card:hover {
+  background-color: var(--hover-color);
+  .img-select-checkbox {
+    visibility: visible;
+  }
+  .imgops-link-btn {
+    visibility: visible;
+  }
+  .imgops-link-btn:not(:hover) {
+    animation: pulsate 1.2s infinite;
+  }
+}
+
+.img-card[selected] {
+  background-color: var(--selected-color);
+  .img-select-checkbox {
+    visibility: visible;
+  }
+}
+
+.img-name {
+  font-size: 12px;
+  margin-block: 8px;
+  text-align: center;
 }

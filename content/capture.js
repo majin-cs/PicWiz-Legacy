@@ -1,5 +1,20 @@
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
+/* Main variables */
+let selectStarted = false;
+let selecting = false;
+let stopSelect = false;
+let startX, startY;
+
+let bg;
+let overlay;
+let selectArea;
+let captureInfo;
+let selectOptions;
+
+const quitKeys = ['Escape', 'Delete', 'Q', 'q', 'F4', 'Pause'];
+
+/******************************************************************************/
 /* CSS related constants */
 
 /* High z-Index too not underlap on any elements - max value (2147483647) could introduce issues on some browsers */
@@ -26,23 +41,8 @@ const kdbTitleClass = 'pic-wiz-title'
 const kbdSectionClass = 'pic-wiz-kbd-section'
 const kbdClass = 'pic-wiz-kbd';
 
-/* Main variables */
-
-let selectStarted = false;
-let selecting = false;
-let stopSelect = false;
-let startX, startY;
-
-let bg;
-let overlay;
-let selectArea;
-let captureInfo;
-let selectOptions;
-
-const quitKeys = ['Escape', 'Delete', 'Q', 'q', 'F4', 'Pause'];
 
 /******************************************************************************/
-
 /* DOM related */
 
 function renderCaptureInfo() {
@@ -175,7 +175,6 @@ function renderSelectOptions(coords) {
 }
 
 /******************************************************************************/
-
 /* Mouse / Keyboard Handlers */
 
 function handleMouseDown(event) {
@@ -246,8 +245,7 @@ function toggleEventListeners(activate) {
 }
 
 /******************************************************************************/
-
-/* Screenshot Actions / Options */
+/* Screenshot Actions & Options */
 
 async function sendScreenshotAction() {
     return new Promise((resolve, reject) => {
@@ -258,19 +256,19 @@ async function sendScreenshotAction() {
                 if (response.error) {
                     reject(response.message);
                 }
-                /* Cut down screenshot to fit select area */
                 const { x, y, width, height } = selectArea.getBoundingClientRect();
                 const screenshot = new Image;
-                screenshot.src = response;
+                screenshot.src = response.screenshot;
+                const zoomFactor = response.zoom;
 
                 const canvas = document.createElement('canvas');
-                canvas.width = width;
-                canvas.height = height;
+                canvas.width = width * zoomFactor;
+                canvas.height = height * zoomFactor;
                 const context = canvas.getContext('2d');
 
                 const selectedAreaDataUrl = await new Promise((resolve) => {
                     screenshot.onload = async () => {
-                        context.drawImage(screenshot, x, y, width, height, 0, 0, width, height);
+                        context.drawImage(screenshot, x * zoomFactor, y * zoomFactor, width * zoomFactor, height * zoomFactor, 0, 0, width * zoomFactor, height * zoomFactor);
                         const dataURL = canvas.toDataURL('image/png');
                         resolve(dataURL);
                     };
@@ -296,7 +294,7 @@ async function sendCopyAction(blobBuffer) {
 
 /* Automatically hides elements that shouldn't 
 appear on the screenshot and stops regular selection */
-async function runScreenshotOption(func) {
+async function executeScreenshotOption(func) {
     utils.hide(selectOptions);
     stopSelect = true;
     await utils.delay(200); /* Wait until options are fully hidden */
@@ -316,14 +314,14 @@ async function runScreenshotOption(func) {
 }
 
 async function openImgOps() {
-    runScreenshotOption(async (screenshotURL) => {
+    executeScreenshotOption(async (screenshotURL) => {
         browserAPI.runtime.sendMessage({ action: constants.ACTIONS.OPEN_IMG_OPS, imgUrl: screenshotURL });
         return true;
     });
 }
 
 async function copySelectArea() {
-    runScreenshotOption(async (screenshotURL) => {
+    executeScreenshotOption(async (screenshotURL) => {
         try {
             let screenshotBlob = utils.dataURLToBlob(screenshotURL);
 
@@ -349,13 +347,11 @@ async function copySelectArea() {
 }
 
 async function saveSelectArea() {
-    runScreenshotOption(async (screenshotURL) => {
+    executeScreenshotOption(async (screenshotURL) => {
         utils.downloadUrl(screenshotURL, `${utils.generateNumUUID(13)}.png`)
         return true;
     });
 }
-
-/******************************************************************************/
 
 function quitCapture() {
     selecting = false;
@@ -366,6 +362,9 @@ function quitCapture() {
         utils.removeElementWithChildren(el);
     });
 }
+
+/******************************************************************************/
+/* Entry point */
 
 export function initCapture() {
     if (selectStarted) {

@@ -2,8 +2,6 @@ const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 const BASE_64_REG = /^data:image\/([a-z]+);base64,/i;
 
-/******************************************************************************/
-
 /* Wait for _ milliseconds */
 export function delay(ms) {
     return new Promise(res => setTimeout(res, ms));
@@ -82,7 +80,6 @@ export async function runInCurrenTab(callback) {
 }
 
 /******************************************************************************/
-
 /* Global DOM funcs */
 
 export function hide(element) {
@@ -102,10 +99,6 @@ export function mouseCoords(mouseEvent) {
     return {
         x: mouseEvent.clientX,
         y: mouseEvent.clientY,
-        /* account for existing scroll
-        x: mouseEvent.clientX + window.scrollX,
-        y: mouseEvent.clientY + window.scrollY, 
-        */
     }
 }
 

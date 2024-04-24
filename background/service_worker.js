@@ -4,6 +4,7 @@ import { IMG_OPS_URLs, ACTIONS, CONTEXT_MENU_ITEM_ID, i18n, ERRORS, SHORTCUT_URL
 const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 /******************************************************************************/
+/* General Functions */
 
 async function injectCSSFile(tab, cssPath) {
   try {
@@ -57,6 +58,7 @@ function openImgOps(imgUrl) {
   }
 }
 
+/* Returns screenshot and zoom level of current tab */
 function takeScreenshot() {
   return new Promise((resolve, reject) => {
     try {
@@ -64,7 +66,9 @@ function takeScreenshot() {
         if (browserAPI.runtime.lastError) {
           reject(browserAPI.runtime.lastError);
         } else {
-          resolve(dataUri);
+          browserAPI.tabs.getZoom((zoomFactor) => {
+            resolve({screenshot: dataUri, zoom: zoomFactor});
+          });
         }
       });
     } catch {
@@ -134,8 +138,7 @@ function onDownloadComplete(itemId) {
 }
 
 /******************************************************************************/
-
-/* Create Context Menu Item */
+/* Context Menu Items */
 
 browserAPI.contextMenus.create({
   id: CONTEXT_MENU_ITEM_ID,
@@ -149,8 +152,7 @@ browserAPI.contextMenus.create({
 
 
 /******************************************************************************/
-
-/* Register Listeners */
+/* Entry point */
 
 /* Main message listener */
 browserAPI.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -218,7 +220,7 @@ browserAPI.commands.onCommand.addListener((command) => {
   }
 });
 
-/* Default settings */
+/* Set default settings */
 browserAPI.runtime.onInstalled.addListener(() => {
   OPTIONS.TOGGLEABLE.forEach(option => {
     browserAPI.storage.sync.set({ [option.name]: true });
